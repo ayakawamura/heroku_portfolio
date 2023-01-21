@@ -1,2 +1,12 @@
-<h1>Searches#tag_search</h1>
-<p>Find me in app/views/searches/tag_search.html.erb</p>
+<div class = "container">
+
+  <%= render "searches/form_tag_search", tags: @tags %>
+
+  <h2><i class="fas fa-tag"></i><%= @tag.name %></h2>
+
+  <%= render "posts/post_index", posts: @posts %>
+  <div class="my-5 ml-auto">
+    <%= paginate(@posts) %>
+  </div>
+
+</div>

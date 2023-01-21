@@ -1,16 +1,27 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Portfolio</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>PfMachinaka</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
-    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
-    <%= javascript_importmap_tags %>
-  </head>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <!--フォント変更-->
+    <link href="https://fonts.googleapis.com/css2?family=Dosis:wght@200&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Estonia&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Kiwi+Maru:wght@300&display=swap" rel="stylesheet">
 
   <body>
+    <%= render "layouts/header" %>
     <%= yield %>
+
+    <span id="arrow">
+      <a href="#">
+        <%= image_tag asset_path("arrow2.png"), class:"arrow-img" %>
+      </a>
+    </span>
+
+    <%= render "layouts/footer" %>
+
   </body>
 </html>

@@ -1,0 +1,10 @@
+<div class = "container">
+
+  <h2>TIMELINE</h2>
+
+  <%= render "post_index", posts: @posts %>
+  <div class="my-5 ml-auto">
+    <%= paginate(@posts) %>
+  </div>
+
+</div>

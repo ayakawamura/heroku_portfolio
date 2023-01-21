@@ -1,2 +1,7 @@
-<h1>Searches#user_search</h1>
-<p>Find me in app/views/searches/user_search.html.erb</p>
+<div class = "container">
+
+  <h2>User '<%= @word %>'</h2>
+  <%= render "searches/form_user_search" %>
+  <%= render "users/user_index", users: @users %>
+
+</div>

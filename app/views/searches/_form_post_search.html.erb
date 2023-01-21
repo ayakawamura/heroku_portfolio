@@ -1,0 +1,8 @@
+<%= form_with url: post_search_path, local: true, method: :get do |f| %>
+    <div class="row mx-auto pt-3">
+      <%= f.text_field :word , placeholder: "キーワード検索", class:"search form-control ml-auto" %>
+      <%= button_tag type: 'submit' ,class: "btn mr-auto" do%>
+        <i class="fas fa-search" style="color:#FFF;"></i>
+      <%end%>
+    </div>
+<% end %>

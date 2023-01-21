@@ -1,2 +1,234 @@
-<h1>Posts#index</h1>
-<p>Find me in app/views/posts/index.html.erb</p>
+<div class="container">
+
+  <%= render "searches/form_tag_search", tags: @tags %>
+
+  <h2 class="top-line">ARTICLES</h2>
+
+    <%= render "post_index", posts: @posts %>
+    <div class="my-5 ml-auto">
+      <%= paginate(@posts) %>
+    </div>
+
+<%# 地図表示 %>
+  <%# <h2 class="top-line">MAP</h2>
+  <!--検索フォーム-->
+  <input id="address" type="textbox" value="大阪">
+  <input type="button" value="検索" onclick="codeAddress()" class="btn btn-secondary btn-sm">
+  <div id='index-map' style='width: 100%; height: 500px;' class="mt-3"></div> %>
+
+</div>
+
+
+<script>
+  let map
+
+  function initMap(){
+    // geocoderを初期化
+    geocoder = new google.maps.Geocoder()
+
+    map = new google.maps.Map(document.getElementById('index-map'), {
+        center: {lat: 35.68123620000001, lng:139.7671248},
+        zoom: 7,
+        styles:
+              [
+                  {
+                      "featureType": "all",
+                      "elementType": "geometry.fill",
+                      "stylers": [
+                          {
+                              "weight": "2.00"
+                          }
+                      ]
+                  },
+                  {
+                      "featureType": "all",
+                      "elementType": "geometry.stroke",
+                      "stylers": [
+                          {
+                              "color": "#9c9c9c"
+                          }
+                      ]
+                  },
+                  {
+                      "featureType": "all",
+                      "elementType": "labels.text",
+                      "stylers": [
+                          {
+                              "visibility": "on"
+                          }
+                      ]
+                  },
+                  {
+                      "featureType": "landscape",
+                      "elementType": "all",
+                      "stylers": [
+                          {
+                              "color": "#f2f2f2"
+                          }
+                      ]
+                  },
+                  {
+                      "featureType": "landscape",
+                      "elementType": "geometry.fill",
+                      "stylers": [
+                          {
+                              "color": "#ffffff"
+                          }
+                      ]
+                  },
+                  {
+                      "featureType": "landscape.man_made",
+                      "elementType": "geometry.fill",
+                      "stylers": [
+                          {
+                              "color": "#ffffff"
+                          }
+                      ]
+                  },
+                  {
+                      "featureType": "poi",
+                      "elementType": "all",
+                      "stylers": [
+                          {
+                              "visibility": "off"
+                          }
+                      ]
+                  },
+                  {
+                      "featureType": "road",
+                      "elementType": "all",
+                      "stylers": [
+                          {
+                              "saturation": -100
+                          },
+                          {
+                              "lightness": 45
+                          }
+                      ]
+                  },
+                  {
+                      "featureType": "road",
+                      "elementType": "geometry.fill",
+                      "stylers": [
+                          {
+                              "color": "#eeeeee"
+                          }
+                      ]
+                  },
+                  {
+                      "featureType": "road",
+                      "elementType": "labels.text.fill",
+                      "stylers": [
+                          {
+                              "color": "#7b7b7b"
+                          }
+                      ]
+                  },
+                  {
+                      "featureType": "road",
+                      "elementType": "labels.text.stroke",
+                      "stylers": [
+                          {
+                              "color": "#ffffff"
+                          }
+                      ]
+                  },
+                  {
+                      "featureType": "road.highway",
+                      "elementType": "all",
+                      "stylers": [
+                          {
+                              "visibility": "simplified"
+                          }
+                      ]
+                  },
+                  {
+                      "featureType": "road.arterial",
+                      "elementType": "labels.icon",
+                      "stylers": [
+                          {
+                              "visibility": "off"
+                          }
+                      ]
+                  },
+                  {
+                      "featureType": "transit",
+                      "elementType": "all",
+                      "stylers": [
+                          {
+                              "visibility": "off"
+                          }
+                      ]
+                  },
+                  {
+                      "featureType": "water",
+                      "elementType": "all",
+                      "stylers": [
+                          {
+                              "color": "#46bcec"
+                          },
+                          {
+                              "visibility": "on"
+                          }
+                      ]
+                  },
+                  {
+                      "featureType": "water",
+                      "elementType": "geometry.fill",
+                      "stylers": [
+                          {
+                              "color": "#c8d7d4"
+                          }
+                      ]
+                  },
+                  {
+                      "featureType": "water",
+                      "elementType": "labels.text.fill",
+                      "stylers": [
+                          {
+                              "color": "#070707"
+                          }
+                      ]
+                  },
+                  {
+                      "featureType": "water",
+                      "elementType": "labels.text.stroke",
+                      "stylers": [
+                          {
+                              "color": "#ffffff"
+                          }
+                      ]
+                  }
+              ]
+    });
+
+
+    <% @posts.each do |post| %>
+        (function(){
+        var contentString = "住所：<%= post.address %>";
+
+        var marker = new google.maps.Marker({
+            position:{lat: <%= post.latitude %>, lng: <%= post.longitude %>},
+            map: map,
+            title: contentString
+        });
+
+      })();
+    <% end %>
+    }
+
+    let geocoder
+
+    function codeAddress(){
+      let inputAddress = document.getElementById('address').value;
+
+      geocoder.geocode( { 'address': inputAddress}, function(results, status) {
+        if (status == 'OK') {
+          map.setCenter(results[0].geometry.location);
+        } else {
+          alert('該当する結果がありませんでした：' + status);
+        }
+      });
+    }
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['API_KEY'] %>&callback=initMap" async defer></script>

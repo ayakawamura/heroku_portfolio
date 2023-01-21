@@ -1,0 +1,15 @@
+<div class = "container">
+
+  <%= render "searches/form_tag_search", tags: @tags %>
+
+  <h2>Search results '<%= @word %>'</h2>
+
+  <div class="pt-3">
+    <%= render "posts/post_index", posts: @posts %>
+  </div>
+
+  <div class="my-5 ml-auto">
+    <%= paginate(@posts) %>
+  </div>
+
+</div>

@@ -1,0 +1,10 @@
+<div class="tag-list">
+  <p><i class="fas fa-tag"></i>タグで探す</p>
+  <% tags.each do |tag| %>
+    <% unless tag.posts.count == 0 %>
+      <span class="pr-1">
+        <%= link_to tag.name, tag_search_path(tag_id: tag.id) %><%="(#{tag.posts.count}) " %>
+      </span>
+    <%end%>
+  <%end%>
+</div>

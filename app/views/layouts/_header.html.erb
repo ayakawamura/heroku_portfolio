@@ -1,0 +1,73 @@
+<!--fixed-top でヘッダー固定　sticky-topで固定なし-->
+<header class="fixed-top">
+  <div class="brand">
+    <%= link_to "Machinaka Light" ,root_path %>
+  </div>
+  <div class="social">
+    <% if user_signed_in? %>
+      <%= link_to user_path(current_user) do%><i class="far fa-user fa-lg"></i><%end%>
+    <% else %>
+      <%= link_to new_user_session_path do%><i class="far fa-user fa-lg"></i><%end%>
+    <% end %>
+    <%= link_to favorites_path do%><i class="far fa-heart fa-lg"></i><%end%>
+  </div>
+
+  <div id="sp-menu">
+    <ul>
+      <% if user_signed_in? %>
+        <li>
+          <%= link_to root_path do %><span>top</span><%end%>
+        </li>
+        <li>
+          <%= link_to timeline_path do %><span>timeline</span><%end%>
+        </li>
+        <li>
+          <%= link_to favorites_path do %><span>favorites</span><%end%>
+        </li>
+        <li>
+          <%= link_to new_post_path do %><span>new post</span><%end%>
+        </li>
+        <li>
+          <%= link_to posts_path do %><span>articles</span><%end%>
+        </li>
+        <li>
+          <%= link_to users_path do %><span>users</span><%end%>
+        </li>
+        <li>
+          <%= link_to user_path(current_user.id) do %><span>mypage</span><%end%>
+        </li>
+        <li>
+          <%= link_to destroy_user_session_path, method: :delete do %><span>logout</span><%end%>
+        </li>
+      <% else %>
+        <li>
+          <%= link_to root_path do %><span>top</span><%end%>
+        </li>
+        <li>
+          <%= link_to about_path do %><span>about</span><%end%>
+        </li>
+        <li>
+          <%= link_to posts_path do %><span>articles</span><%end%>
+        </li>
+        <li>
+          <%= link_to users_path do %><span>users</span><%end%>
+        </li>
+        <li>
+          <%= link_to new_user_session_path do %><span>login</span><%end%>
+        </li>
+        <li>
+          <%= link_to new_user_registration_path do %><span>signup</span><%end%>
+        </li>
+      <% end %>
+      <%= render "searches/form_post_search" %>
+    </ul>
+  </div>
+
+  <div id="hm-icon">
+    <a class="menu-trigger" href="#">
+      <span></span>
+      <span></span>
+      <span></span>
+    </a>
+  </div>
+</header>

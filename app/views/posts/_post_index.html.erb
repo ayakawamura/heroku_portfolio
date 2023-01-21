@@ -1,0 +1,33 @@
+<% unless posts.present? %>
+  <p class="text-center font-weight-bold pt-5">Article not found</p>
+<% else %>
+
+  <div class="row pt-3">
+    <% posts.each do |post| %>
+
+      <div class="col-lg-4 col-sm-6 mt-3">
+        <%=link_to post_path(post) do %>
+            <% unless post.post_images.present? %>
+              <div class="no-image" style="height: 230px;"></div>
+            <%else%>
+              <% post.post_images.first(1).each do |image| %>
+                <%= attachment_image_tag image, :image, class:"index-image" %>
+              <%end%>
+            <%end%>
+        <% end %>
+
+        <div class="row">
+          <p class="col-10"><i class="fas fa-tag"></i><%= post.tags.take(3).map(&:name).join(', ') %></p>
+
+          <% if user_signed_in? %>
+            <p  id="post_<%= post.id %>" class="col-2 text-right">
+              <%= render "favorites/iine", post: post %>
+            </p>
+          <%end%>
+        </div>
+      </div>
+
+    <% end %>
+  </div>
+
+<% end %>

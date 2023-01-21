@@ -1,2 +1,8 @@
-<h1>Relationships#followings</h1>
-<p>Find me in app/views/relationships/followings.html.erb</p>
+ <div class = "container">
+
+  <h2>FOLLOWEES</h2>
+
+  <%= render "searches/form_user_search" %>
+  <%= render "users/user_index", users: @users %>
+
+</div>

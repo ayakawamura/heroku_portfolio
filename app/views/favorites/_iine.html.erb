@@ -1,0 +1,9 @@
+<% if post.favorited_by?(current_user) %>
+  <%= link_to post_favorites_path(post), method: :delete, remote: true do %>
+    <span style="color: #B22222;">♥<%= post.favorites.count %></span>
+  <% end %>
+<% else %>
+  <%= link_to post_favorites_path(post), method: :post, remote: true do %>
+    <span style="color: #6c6b6b;">♡<%= post.favorites.count %></span>
+  <% end %>
+<% end %>

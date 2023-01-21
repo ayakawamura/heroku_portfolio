@@ -1,0 +1,391 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+ @import "bootstrap";
+ @import 'font-awesome-sprockets';
+ @import 'font-awesome';
+
+$main-color: #9e665d;
+$sub-color: #ece6e0;
+$line-color: #e3e3e3;
+$text-color: #6c6b6b;
+
+// header #brand a{
+//     font-family: 'Estonia', cursive;
+// }
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  color: #6c6b6b;
+  font-family: 'Kiwi Maru', serif;
+}
+
+.container{
+  margin-top: 150px;
+}
+
+
+header{
+  height: 80px;
+  background: rgba(255,255,255,0.6);
+  border-bottom: 1px solid $line-color;
+  text-align: center;
+  position: relative;
+
+  .brand {
+    font-size: 50px;
+
+    a{
+      color: $main-color;
+      font-family: 'Estonia', cursive;
+    }
+    a:hover{
+      text-decoration: none;
+      color: $sub-color;
+    }
+  }
+
+  .social {
+    position: absolute;
+    top: 27px;
+    right: 45px;
+
+    a{
+      display: inline-block;
+      margin-left: 10px;
+      color: $text-color;
+    }
+  }
+}
+
+footer{
+  margin-top: 100px;
+  width: 100%;
+  height: 100px;
+  background: $main-color;
+
+  p{
+    color: #FFF;
+    padding: 70px 0 0 10px;
+  }
+}
+
+h2{
+  text-align: center;
+  margin: 0 auto 30px;
+  font-family: 'Dosis', sans-serif;
+  padding-top: 30px;
+}
+
+.pagination{
+  justify-content: center;
+
+  li{
+    a {
+      border: none;
+      color: $text-color;
+
+      &:hover {
+        border-radius: 5px;
+        color: $text-color;
+      }
+    }
+  }
+
+  .active>.page-link{
+    background: $text-color;
+    border-radius: 5px;
+  }
+}
+
+
+// pagetopへ戻る
+#arrow {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+
+  .arrow-img {
+    width: 50px;
+    height: 50px;
+  }
+}
+
+// ハンバーガーアイコン
+%trigger {
+  display: inline-block;
+  transition: all .4s;
+  box-sizing: border-box;
+}
+
+#hm-icon {
+  position: fixed;
+  left: 20px;
+  top: 30px;
+  z-index: 10;
+
+  .menu-trigger {
+    @extend %trigger;
+    position: relative;
+    width: 30px;
+    height: 20px;
+
+    span {
+      @extend %trigger;
+      position: absolute;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background-color: $text-color;
+      border-radius: 10px;
+
+      &:nth-child(1) {
+        top: 0;
+      }
+      &:nth-child(2) {
+        top: 9px;
+      }
+      &:nth-child(3) {
+        bottom: 0;
+      }
+    }
+
+    &.active span:nth-child(1) {
+      -webkit-transform: translateY(9px) rotate(-45deg);
+      transform: translateY(9px) rotate(-45deg);
+      background-color: #FFF;
+    }
+    &.active span:nth-child(2) {
+      opacity: 0;
+    }
+    &.active span:nth-child(3) {
+      -webkit-transform: translateY(-9px) rotate(45deg);
+      transform: translateY(-9px) rotate(45deg);
+      background-color: #FFF;
+    }
+  }
+}
+
+// ハンバーガーアイコン表示内容
+#sp-menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: #000000c2;
+  width: 40%;
+  min-height: 100%;
+  display: none;
+  z-index: 9;
+
+  ul {
+    margin-top: 100px;
+  }
+  li {
+    text-align: center;
+    margin-bottom: 30px;
+  }
+  span {
+    color: #FFF;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 20px;
+    font-family: 'Dosis', sans-serif;
+
+  }
+  a:hover{
+    color: #FFF;
+  }
+}
+
+// 投稿、ログインボタン
+.submit{
+  width: 40%;
+  padding: 10px;
+  background: $main-color;
+  color: #edeae2;
+  border-radius: 3rem;
+  border: none;
+}
+
+.guest{
+  width: 40%;
+  padding: 10px;
+  background: #edeae2;
+  textcolor: $main-color;
+  border-radius: 3rem;
+  border: none;
+  margin: 0 auto;
+}
+
+.back {
+  padding: 10px;
+  color: $main-color;
+  &:hover{
+    color: $main-color;
+  }
+}
+
+.top-line{
+  border-top: 1px solid $line-color;
+  padding-top: 50px;
+}
+
+.bottom-line{
+  border-bottom: 1px solid $line-color;
+  padding-bottom: 30px;
+}
+
+.search{
+  width: 300px;
+  height: 50px;
+  border-radius: 3em;
+}
+
+
+// topページメイン画像
+#top{
+  height: 500px;
+  width: 100%;
+  .top1{
+   background-image: image-url("top1.jpg");
+  }
+  .top2{
+   background-image: image-url("top2.jpg");
+  }
+  .top3{
+   background-image: image-url("top3.jpg");
+  }
+  .top4{
+   background-image: image-url("top4.jpg");
+  }
+  .top5{
+   background-image: image-url("top5.jpg");
+  }
+}
+
+#top6 {
+  background-image: image-url("top6.jpg");
+  width: 230px;
+  height: 300px;
+  background-size: cover;
+}
+
+#top-select{
+    a:hover{
+    text-decoration: none;
+  }
+
+  .select{
+    width: 100%;
+    background: $sub-color;
+    text-align: center;
+    border-radius: 2rem;
+    padding: 30px 10px 10px 10px;
+    margin: 0 auto;
+
+    &:hover{
+      background: #f5f1ed;
+    }
+  }
+}
+
+// view more
+.top-btn{
+  padding: 10px 30px;
+  color: $main-color;
+  border: 1px solid $main-color;
+  border-radius: 3rem;
+
+  &:hover{
+    background: $main-color;
+    color: #FFF;
+    text-decoration: none;
+  }
+}
+
+// アバウトページ
+#about a{
+  color: $text-color;
+}
+
+// ユーザーページ
+#user-card{
+  background: $sub-color;
+  border-radius: 1rem;
+  &:hover{
+    background: #f5f1ed;
+  }
+  a:hover {
+    text-decoration: none;
+  }
+}
+
+#profile{
+  border-bottom: 1px solid $line-color;
+  margin-bottom: 20px;
+  p a{
+    color: $text-color;
+  }
+}
+
+
+// 投稿一覧ページ
+// タグ一覧
+.tag-list{
+  background: $sub-color;
+  border-radius: 1rem;
+  margin-bottom: 50px;
+  padding: 30px;
+
+  a{
+    color: $text-color
+  }
+  p{
+    font-weight: bold;
+  }
+}
+
+// 投稿詳細ページ
+#post-user-card a:hover{
+  color: $text-color;
+}
+
+#post-tag p{
+  color: $text-color;
+}
+
+.no-image{
+  background-image: image-url("angel.jpg");
+  width: 100%;
+  background-size: cover;
+  background-position: center right;
+  position: relative;
+
+  span{
+    font-size: 23px;
+    color: #FFF;
+    position: absolute;
+    top: 300px;
+    right: 100px;
+  }
+}
+
+.index-image{
+  width: 100%;
+  height: 230px;
+  background-size: cover;
+}

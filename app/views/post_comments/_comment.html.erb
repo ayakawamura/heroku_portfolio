@@ -1,0 +1,16 @@
+<table class="table">
+  <% post_comments.each do |comment| %>
+      <tr>
+        <td>
+          <%= attachment_image_tag comment.user, :icon, :fill, 30, 30, fallback: "no_image.png",size:"30x30" ,style:"border-radius:50%;"%></td>
+        <td><%= "#{comment.user.name}:" %>
+        </td>
+        <td>
+          <%= simple_format(comment.comment) %>
+          <% if comment.user == current_user %>
+            <div class="text-right"><%= link_to "delete.", post_post_comment_path(comment.post_id,comment.id), method: :delete, remote: true ,class:"text text-danger"%></div>
+          <%end%>
+        </td>
+      </tr>
+  <% end %>
+</table>

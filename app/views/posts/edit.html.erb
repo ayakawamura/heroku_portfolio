@@ -1,2 +1,41 @@
-<h1>Posts#edit</h1>
-<p>Find me in app/views/posts/edit.html.erb</p>
+<div class = "container">
+  <h2>POST EDIT</h2>
+
+  <div class="row">
+    <div class="col-md-6 mx-auto">
+
+      <%= render "layouts/error", model: @post %>
+      <%= form_with model: @post, local: true do |f| %>
+
+        <div class="mt-4">
+          <%= f.label :post_images_images, "写真選択" %><br/>
+          <%= f.file_field :post_images_images, multiple: true %>
+        </div>
+
+        <div class="mt-4">
+          <%= f.label :address, '撮影場所' %>
+          <%= f.text_field :address , placeholder:"住所、地名を入力してください" ,class:"form-control"%>
+        </div>
+
+        <div class="mt-4">
+          <%= f.label :body ,"投稿文"%>
+          <%= f.text_area :body, placeholder:"最大300字" ,class:"form-control", rows: "5" %>
+        </div>
+
+        <div class="mt-4">
+                <%= f.label :tag ,"タグ"%>
+          <%= f.text_field :tag, value: @tag_list, placeholder:"タグを複数つけるには' , 'で区切ってください" ,class:"form-control"%>
+        </div>
+
+        <div class="text-center mt-5">
+          <%= f.submit 'update!' ,class:"submit"%>
+        </div>
+
+        <div class="text-center mt-5">
+          <%= link_to "back", post_path(@post) ,class:"back"%>
+        </div>
+
+      <%end%>
+    </div>
+  </div>
+</div>
