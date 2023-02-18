@@ -208,7 +208,7 @@
         var contentString = "住所：<%= post.address %>";
 
         var marker = new google.maps.Marker({
-            position:{lat: <%= post.latitude %>, lng: <%= post.longitude %>},
+            position:{lat: <%= post.atitude %>, lng: <%= post.longitude %>},
             map: map,
             title: contentString
         });
